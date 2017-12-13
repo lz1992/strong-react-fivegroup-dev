@@ -1,4 +1,4 @@
-# react-kit
+# strong-five-react-kit
 
 React 开发脚手架。提供react开发环境，以及模块的打包。方便开发。（后续会丰富其功能，提供更多便利操作。）
 
