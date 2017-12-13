@@ -10,6 +10,7 @@ const path = require('path')
 const paths = config.utils_paths
 const __DEV__ = config.globals.__DEV__
 
+
 debug('Creating configuration.')
 
 const webpackConfig = {
@@ -58,14 +59,17 @@ webpackConfig.output = {
 // ------------------------------------
 webpackConfig.externals = {
   'react': 'react',
-  'react-dom': 'react-dom',
-  'antd':'antd'
+  'react-dom': 'react-dom'
 }
 
 // ------------------------------------
 // 插件plugins
 // ------------------------------------
 webpackConfig.plugins = [
+  new webpack.DllReferencePlugin({
+    context: __dirname,
+    manifest: require(paths.modules('modules')+'/vendors-manifest.json')
+   })
   //new webpack.NoErrorsPlugin(),
   //new webpack.optimize.DedupePlugin(),
   //new webpack.optimize.CommonsChunkPlugin('common.js')
