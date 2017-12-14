@@ -9,9 +9,9 @@ module.exports = {
       vendors: []
     },
     output: {
-      filename: '[name].dll.js',
+      filename: '[name].js',
       path: paths.modules('modules'),
-      libraryTarget: 'amd'  
+      library: '[name]'
     },
     plugins: [
        
@@ -22,11 +22,18 @@ module.exports = {
         context:__dirname
       }),
       new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false,  // remove all comments
+        },
         compress: {
-          unused: true,
-          dead_code: true,
+
           warnings: false
         }
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify('production')
+        },
       })
     ],
   }
